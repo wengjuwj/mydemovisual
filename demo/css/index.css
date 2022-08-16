@@ -1,0 +1,824 @@
+/* 公共样式 */
+/* 字体样式 */
+@font-face{font-family: "shishangzhonghei";src: url(../font/shishangzhonghei.ttf);}
+/* flex布局 */
+.dp-flex{
+	display: flex;
+}
+.flex-culumn{
+    flex-direction:column;
+}
+.justify-between{
+	justify-content: space-between;
+}
+.justify-center{
+	justify-content:center;
+}
+.align-center{
+	align-items: center;
+}
+.flex-wrap{
+	flex-wrap: wrap;
+}
+.padding-lt-15{
+    padding-left: 0.15rem;
+}
+.padding-rt-15{
+    padding-right: 0.15rem;
+}
+.padding-top-15{
+    padding-top: 0.15rem;
+}
+.padding-bottom-15{
+    padding-bottom: 0.15rem;
+}
+/* 滚动条整体样式 */
+
+::-webkit-scrollbar {
+    /* 高宽分别对应横竖滚动条的尺寸 */
+    width: 4px; 
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    /* 滚动条里面小方块 */
+
+    border-radius: 5px;
+
+    -webkit-box-shadow: inset 0 0 5px rgba(17, 83, 157, 1);
+
+    background: rgba(17, 83, 157, 1);
+
+}
+
+::-webkit-scrollbar-track {
+    /* 滚动条里面轨道 */
+
+    -webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0);
+
+    border-radius: 0;
+
+    background: rgba(255,255,255,0);
+
+}
+    .chartbox{
+        width: 100%;
+        height: 100%;
+    }
+
+/* 公共样式 */
+.page{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 0.14rem;
+    color: #fff;
+}
+.page.index{
+    background: url(../images/index-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.page.index-eq{
+    background: url(../images/index-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.page.index-jk{
+    background: url(../images/index-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.page.index-nh{
+    background: url(../images/index-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.page.index-zk{
+    background: url(../images/index-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* 导航部分 */
+.nav-wrap{
+    width: 100%;
+    height: 85px;
+    background: url(../images/nav-bg.png)
+    100% no-repeat;
+    background-size: 100% 100%;
+}
+.nav-header{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/* logo部分 */
+.header-logo{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
+    background: url(../images/logo-bg.png) no-repeat;
+    background-size: 100% 100%;
+    
+}
+.header-logo .logo{
+    width: 85%;
+}
+.header-logo .logo img{
+    max-width: 100%;
+}
+
+/* tabs按钮部分 */
+.header-tabs{
+    flex: 1;
+    height: 100%;
+    /* color: #fff; */
+    display: flex;
+}
+.header-tabs .header-tab-item{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+.header-tab-item.active{
+    background: url(../images/active-bg.png);
+}
+.header-tab-item.active .active-status{
+    display: block;
+}
+.header-tab-item .active-status{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 0.12rem;
+    left: 0;
+    background: url(../images/active.png) no-repeat;
+    background-size: 100% 100%;
+    bottom: 0;
+    display: none;
+}
+.header-tab-item .header-tab-contain{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.header-tab-item .header-tab-contain .left{
+
+}
+.header-tab-item .header-tab-contain .right{
+    font-size: 0.3rem;
+    color: rgba(2, 199, 240, 0.4);
+}
+.cn-text{
+    margin-top: 4%;
+}
+/* 菜单部分 */
+.header-menus{
+    width: 15%;
+    height: 100%;
+    padding-right: 1%;
+    padding-left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* color: #fff; */
+}
+.time-menu {
+    height: 0.40rem;
+    padding: 0 0.15rem;
+    text-align: right;
+}
+.line{
+    width: 2px;
+    height: 0.36rem;
+    background:#7995C8 ;
+}
+.time-menu div:not(:first-child){
+    margin-top: 0.02rem;
+}
+.weather-menu{
+    padding: 0 0.15rem;
+    height: 0.40rem;
+    display: flex;
+    align-items: center;
+}
+.weather-menu img{
+    margin-right: 0.05rem;
+    max-width: 0.36rem;
+}
+.collapase-menu{
+    padding: 0 0.15rem;
+    display: flex;
+}
+/* 内容部分 */
+.content-wrap{
+    width: 99%;
+    height: 85%;
+    padding:0;
+    margin: auto;
+}
+.contain{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.line-lt{
+    width: .32rem;
+	height: .32rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../images/line-lt.png);
+	background-size: 100% 100%;
+}
+.line-lb{
+    width: .32rem;
+	height: .32rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url(../images/line-lb.png);
+	background-size: 100% 100%;
+}
+.line-rt{
+    width: .32rem;
+	height: .32rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../images/line-rt.png);
+	background-size: 100% 100%;
+}
+.line-rb{
+    width: .32rem;
+	height: .32rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: url(../images/line-rb.png);
+	background-size: 100% 100%;
+}
+.box-contain{
+    padding: 1px;
+    position: relative;
+}
+.contain-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(17, 54, 157, 0.4);
+}
+.actual-box{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.sub-title{
+    width: 100%;
+    height: 0.32rem;
+    background: url(../images/sub-title.png);
+	background-size: 100% 100%;
+    padding-left: 0.10rem;
+    line-height: 0.32rem;
+    /* color: #fff; */
+    margin-bottom:0.20rem ;
+}
+.sub-status{
+    width: 100%;
+    height: 0.41rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom:0.20rem ;
+   
+}
+.status-right{
+    width: 60%;
+    height: 100%;
+    /* border: 1px solid red; */
+    background: url(../images/status.png);
+	background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.status-item{
+    width: 33%;
+    text-align: center;
+    cursor: pointer;
+}
+.status-item.active{
+    color: #368CC5;
+}
+.box{
+    flex: 1;
+    width: 100%;
+    
+}
+.box-chart{
+    width: 100%;
+    height:82%;
+}
+.rate-70{
+    height:70%;
+}
+.box-overhidden{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.box-over-scroll{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+.box-scroll{
+    
+}
+/* 左侧 */
+.content-left{
+    width: 16%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.content-left-top{
+    width: 100%;
+    height: 55%; 
+}
+/********************************************************工单管理页面 *******************************************************************************************/
+/* 维修人员列表 */
+.repair{
+    width: 100%;
+    margin-bottom: 0.15rem;
+}
+.repair-man{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.1rem;
+}
+.repair-man .assets-img{
+    width: 0.20rem;
+    height: 0.20rem;
+} 
+.repair-man  .man-name{
+    margin-left: 0.10rem;
+}
+.detail-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.detail-item{
+   flex: 1;
+   padding-bottom: 0.08rem;
+   display: flex;
+   border-bottom: 1px solid #fff;
+}
+.detail-item .item-val{
+    color: #3C9BF4;
+}
+.detail-item:not(:first-child){
+    margin-left: 0.08rem;
+}
+.content-left-bottom{
+    width: 100%;
+    height: 42%; 
+    margin-top:8%;
+}
+/* 排单统计 */
+.rank-list{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.rank-item{
+   width: 33%;
+   text-align: center; 
+   margin-bottom: 00.15rem;
+}
+.rank-item img{
+    width: 0.56rem;
+    height: 0.55rem;
+}
+.rank-text{
+    margin: 0.05rem 0;
+}
+/* 中间 */
+.content-middle{
+    width: 66%;
+    height: 100%;
+     margin: 0 1%;
+    position: relative;
+}
+.middle-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.screen-left{
+    position: absolute;
+    top: 22%;
+    left: 0;
+    height: 60%;
+}
+.screen-right{
+    position: absolute;
+    top: 22%;
+    right: 0;
+    height: 59%;
+}
+.operate-area{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+/* 右侧 */
+.content-right{
+    width: 16%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid yellow; */
+}
+.right-box:not(:first-child){
+    margin-top: 2%;
+}
+.right-box1{
+    height: 20%;
+}
+.right-box1-box{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.box1-box-item{
+    flex: 1;
+    height: 100%;
+    background: url(../images/workform_2.png);
+	background-size: 100% 100%;
+}
+.box1-box-item:not(:first-child){
+    margin-left: 4%;
+}
+.box1-box-item .top-text{
+    width: 93%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.14rem;
+}
+.box1-box-item.jk .top-text{
+    height: 25%;
+}
+.bottom-color{
+    width: 93%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.box1-box-item.blue{
+    background: url(../images/workform_2.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.blue .bottom-color{
+    background: rgb(12, 88, 127,0.3);
+}
+.box1-box-item.blue .top-text{
+    color: #0C587F;
+}
+.box1-box-item.orange{
+    background: url(../images/workform_3.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.orange .bottom-color{
+    background: rgb(81, 75, 59,0.3);
+}
+.box1-box-item.orange .top-text{
+    color: #514B3B;
+}
+.box1-box-item.green{
+    background: url(../images/workform_4.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.green .bottom-color{
+    background: rgb(10, 91, 96,0.3);
+}
+.box1-box-item.green .top-text{
+    color: #0A5B60;
+}
+.box1-box-item.red{
+    background: url(../images/workform_1.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.red .bottom-color{
+    background: rgb(85, 34, 72,0.3);
+}
+.box1-box-item.red .top-text{
+    color: #552248;
+}
+.right-box2{
+    height: 24%;
+}
+.right-box3{
+    height: 27%;
+}
+.right-box4{
+    height: 26%;
+}
+/********************************************************监控管理页面*******************************************************************************************/
+.index-jk .left-box1{
+    height: 33%;
+}
+.index-jk .left-box2{
+    height: 37%;
+    margin: 4% 0;
+}
+.index-jk .left-box3{
+    height: 37%;
+}
+.index-jk .right-box1{
+    height: 20%;
+}
+.index-jk .right-box2{
+    height: 40%;
+    margin: 4% 0;
+}
+.index-jk .right-box3{
+    height: 40%;
+}
+.box1-box-item.jk{
+    background: url(../images/jkstatus_0.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.jk.all{
+    flex: 1.2;
+    background: url(../images/jkstatus_0.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.jk.nomal{
+    background: url(../images/jkstatus_1.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.jk.offline{
+    background: url(../images/jkstatus_2.png);
+	background-size: 100% 100%;
+}
+.box1-box-item.jk .bottom-color{
+    font-family: shishangzhonghei;
+    font-size: 0.25rem;
+    height: 72%;
+    color: #15FAFF;
+}
+.box1-box-item.jk.nomal .bottom-color{
+    color: #2AEC40;
+}
+.box1-box-item.jk.offline .bottom-color{
+    color: #969696;
+}
+/* 监控点等级统计 */
+.left-box1-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.left-box1-item{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.1rem;
+}
+.left-box1-top{
+    width: 0.60rem;
+    height: 0.52rem;
+    background: url(../images/1.png);
+	background-size: 100% 100%;
+}
+.left-top-text{
+    width: 100%;
+    height: 59%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.10rem;
+    color: #000;
+}
+.left-top-bottom{
+    text-align: center;
+    font-size: 0.12rem;
+    margin-top: -0.02rem;
+}
+.left-box1-bottom{
+    width: 0.79rem;
+    height: 0.25rem;
+    background: url(../images/1-1.png);
+	background-size: 100% 100%;
+    text-align: center;
+    line-height: 0.25rem;
+}
+.left-box1-item.level_1 .left-box1-top{
+    background: url(../images/1.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_1 .left-box1-bottom{
+    background: url(../images/1-1.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_2 .left-box1-top{
+    background: url(../images/2.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_2 .left-box1-bottom{
+    background: url(../images/2-2.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_3 .left-box1-top{
+    background: url(../images/3.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_3 .left-box1-bottom{
+    background: url(../images/3-3.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_4 .left-box1-top{
+    background: url(../images/4.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_4 .left-box1-bottom{
+    background: url(../images/4-4.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_5 .left-box1-top{
+    background: url(../images/5.png);
+	background-size: 100% 100%;
+}
+.left-box1-item.level_5 .left-box1-bottom{
+    background: url(../images/5-5.png);
+	background-size: 100% 100%;
+}
+/********************************************************设备管理页面 *******************************************************************************************/
+.index-eq .left-box1{
+    height: 28%;
+}
+.index-eq .left-box2{
+    height: 37%;
+    margin: 4% 0;
+}
+.index-eq .left-box3{
+    height: 37%;
+}
+.index-eq .right-box1{
+    height: 20%;
+}
+.index-eq .right-box2{
+    height: 40%;
+    margin: 4% 0;
+}
+.index-eq .right-box3{
+    height: 40%;
+}
+/* 本月设备状态统计 */
+.list-status-four{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.list-status-four-item{
+    flex: 1;
+    height: 100%;
+    background: url(../images/eq_1.png);
+	background-size: 100% 100%;
+}
+.list-status-four-item.blue{
+    background: url(../images/eq_1.png);
+	background-size: 100% 100%;
+}
+.list-status-four-item.yellow{
+    background: url(../images/eq_2.png);
+	background-size: 100% 100%;
+}
+.list-status-four-item.red{
+    background: url(../images/eq_3.png);
+	background-size: 100% 100%;
+}
+.list-status-four-item:not(:first-child){
+    margin-left: 4%;
+}
+.list-status-four-item .top{
+    width: 100%;
+    height: 55%;
+}
+.list-status-four-item .middle{
+    font-family: shishangzhonghei;
+    font-size: 0.2rem;
+    text-align: center;
+    color: #7DEDFF;
+}
+.list-status-four-item .bottom{
+    font-size: 0.14rem;
+    text-align: center;
+}
+/* 本月设备检修统计 */
+.list-status-five{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.list-status-five-item{
+    flex: 1;
+    height: 100%;
+    background: url(../images/eq_4.png);
+	background-size: 100% 100%;
+}
+.list-status-five-item.red{
+    background: url(../images/eq_5.png);
+	background-size: 100% 100%;
+}
+.list-status-five-item.yellow{
+    background: url(../images/eq_6.png);
+	background-size: 100% 100%;
+}
+.list-status-five-item.blue{
+    background: url(../images/eq_4.png);
+	background-size: 100% 100%;
+}
+.list-status-five-item:not(:first-child){
+    margin-left: 4%;
+}
+.list-status-five-item .top{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.14rem;
+}
+.list-status-five-item .bottom{
+    text-align: center;
+    font-family: shishangzhonghei;
+    font-size: 0.2rem;
+}
+.list-status-five-item.red .bottom{
+    color: #D64062;
+}
+.list-status-five-item.yellow .bottom{
+    color: #E17F20;
+}
+.list-status-five-item.blue .bottom{
+    color: #01D4F9;
+}
+/********************************************************智能控制页面 *******************************************************************************************/
+.index-zk .left-box1{
+    height: 28%;
+}
+.index-zk .left-box2{
+    height: 37%;
+    margin: 4% 0;
+}
+.index-zk .left-box3{
+    height: 37%;
+}
+.index-zk .right-box1{
+    height: 20%;
+}
+.index-zk .right-box2{
+    height: 40%;
+    margin: 4% 0;
+}
+.index-zk .right-box3{
+    height: 40%;
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>安徽省立医院后勤综合服务平台</title>
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/common/fontSize.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <!-- 导航部分 -->
+    <script src="js/components/header-bar.js"></script>
+    <!-- 玫瑰图 -图例垂直排列 -->
+    <script src="js/components/rose-chart.js"></script>
+    <!-- 玫瑰图 -图例水平排列 -->
+    <script src="js/components/rose-horizontal-chart.js"></script>
+    <!-- 双环形图 -->
+    <script src="js/components/pie-chart.js"></script>
+    <!-- 折线图 -->
+    <script src="js/components/line-chart.js"></script>
+    <!-- 堆叠柱形图 -->
+    <script src="js/components/bar-chart.js"></script>
+    <!-- 柱形图-渐变 -->
+    <script src="js/components/bar-reverse-chart.js"></script>
+    <!-- 雷达图 -->
+    <script src="js/components/radar-chart.js"></script>
+    <!-- 本月排单统计组件 -->
+    <script src="js/components/list-status-one.js"></script>
+    <!-- 监控设备状态统计 -->
+    <script src="js/components/list-status-two.js"></script>
+    <!-- 监控点等级统计 -->
+    <script src="js/components/list-status-three.js"></script>
+    <!--  -->
+    <script src="js/components/list-status-four.js"></script>
+    <!-- 本月设备检修统计 -->
+    <script src="js/components/list-status-five.js"></script>
+    <!-- 中间图片部分 -->
+    <script src="js/components/gongdan.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 中间部分的样式 -->
+    <link rel="stylesheet" href="./css/gong-dan.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="page index-zk">
+            <div class="wrap">
+                <header-bar :active-index="4"></header-bar>
+                <!-- 内容部分 -->
+                <div class="content-wrap">
+                   <div class="contain">
+                        <!-- 左侧 -->
+                        <div class="content-left">
+                            <!-- 左侧上 -->
+                            <div class="box-contain left-box left-box1">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">空调设备统计</div>
+                                        <div class="box rate-70">
+                                            <list-status-four></list-status-four>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 左侧中 -->
+                            <div class="box-contain left-box left-box2">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">空调预警提醒</div>
+                                        <div class="box-chart">
+                                            <line-chart :chart-data="lineChartData"></line-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 左侧下 -->
+                            <div class="box-contain left-box left-box3">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">区域空调统计</div>
+                                        <div class="box-chart">
+                                            <bar-chart :chart-data="barChartData"></bar-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 中间 -->
+                        <div class="content-middle">
+                           <gong-dan></gong-dan>
+                        </div>
+                        <!-- 右侧 -->
+                        <div class="content-right">
+                            <div class="box-contain right-box right-box1">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">空调实时功率统计</div>
+                                        <div class="box-chart">
+                                            <line-chart :chart-data="lineChartData"></line-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-contain right-box right-box2">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">月度空调用电量统计</div>
+                                        <div class="box-chart">
+                                            <line-chart :chart-data="lineChartData"></line-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-contain right-box right-box3">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月监控趋势统计</div>
+                                        <div class="box-chart">
+                                            <rose-horizontal-chart></rose-horizontal-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <script src="js/index/mixin.js"></script>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            mixins: [mixins],
+            data() {
+                return {
+                    constants: {},
+                    // 区域监控统计
+                    barChartData:{
+                        xAxisData:['门诊楼','综合楼','住院楼','医技楼','检验科'],
+                        yAxisData:[
+                            {
+                                name:"一类",
+                                data:[30,10,40,20,50]
+                            },
+                            {
+                                name:"二类",
+                                data:[10,40,20,30,20]
+                            },
+                            {
+                                name:"三类",
+                                data:[50,15,20,20,30]
+                            },
+                            {
+                                name:"四类",
+                                data:[50,15,20,20,30]
+                            },
+                        ]
+                    },
+                    // 监控点
+                    jkLevel:[
+                        {
+                            level:'I',
+                            levelText:'一类',
+                            number:30,
+                        },
+                        {
+                            level:'II',
+                            levelText:'二类',
+                            number:60,
+                        },
+                        {
+                            level:'III',
+                            levelText:'三类',
+                            number:100,
+                        },
+                        {
+                            level:'IV',
+                            levelText:'四类',
+                            number:150,
+                        },
+                        {
+                            level:'总',
+                            levelText:'全部',
+                            number:340,
+                        },
+                    ],
+                    // 监控等级占比
+                    pieChartData:{
+                        "data": [
+                            {
+                                "name": "一类",
+                                "num": "31.2587",
+                                "proportion": "77.21"
+                            },
+                            {
+                                "name": "二类",
+                                "num": "27.6939",
+                                "proportion": "8.09"
+                            },
+                            {
+                                "name": "三类",
+                                "num": "33.5782",
+                                "proportion": "4.41"
+                            },
+                            {
+                                "name": "四类",
+                                "num": "30.1816",
+                                "proportion": "3.68"
+                            },
+                        ]
+                    },
+                    // 本月监控趋势统计
+                    lineChartData:{
+                        xAxisData:['一','二','三','四'],
+                        yAxisData:[
+                            {
+                                name:"正常",
+                                data:[300,100,400,200]
+                            },
+                            {
+                                name:"离线",
+                                data:[100,400,200,300]
+                            },
+                        ]
+                    }
+                };
+            },
+            created(){
+
+            },
+            mounted(){
+            },
+            methods: {
+                changeStatus(index){
+                    this.statusList.forEach((e,i)=>{
+                        index==i?e.active=true:e.active=false
+                    })
+                },
+                  // echarts字号自适应
+                fontSize(res) {
+                    var docEl = document.documentElement,
+                        clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    if (!clientWidth) return;
+                    var fontSize = 100 * (clientWidth / 1920);
+                    return res * fontSize;
+                },
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>安徽省立医院后勤综合服务平台</title>
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/common/fontSize.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <!-- 导航部分 -->
+    <script src="js/components/header-bar.js"></script>
+    <!-- 玫瑰图 -图例垂直排列 -->
+    <script src="js/components/rose-chart.js"></script>
+    <!-- 玫瑰图 -图例水平排列 -->
+    <script src="js/components/rose-horizontal-chart.js"></script>
+    <!-- 双环形图 -->
+    <script src="js/components/pie-chart.js"></script>
+    <!-- 折线图 -->
+    <script src="js/components/line-chart.js"></script>
+    <!-- 堆叠柱形图 -->
+    <script src="js/components/bar-chart.js"></script>
+    <!-- 柱形图-渐变 -->
+    <script src="js/components/bar-reverse-chart.js"></script>
+    <!-- 雷达图 -->
+    <script src="js/components/radar-chart.js"></script>
+    <!-- 本月排单统计组件 -->
+    <script src="js/components/list-status-one.js"></script>
+    <!-- 监控设备状态统计 -->
+    <script src="js/components/list-status-two.js"></script>
+    <!-- 监控点等级统计 -->
+    <script src="js/components/list-status-three.js"></script>
+    <!-- 中间图片部分 -->
+    <script src="js/components/gongdan.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 中间部分的样式 -->
+    <link rel="stylesheet" href="./css/gong-dan.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="page index-nh">
+            <div class="wrap">
+                <header-bar :active-index="3"></header-bar>
+                <!-- 内容部分 -->
+                <div class="content-wrap">
+                   <div class="contain">
+                        <!-- 左侧 -->
+                        <div class="content-left">
+                            <!-- 左侧上 -->
+                            <div class="box-contain content-left-top">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">维修人员信息</div>
+                                        <div class="sub-status">
+                                            <div class="status-right">
+                                                <div class="status-item" 
+                                                :class="[status.active?'active':'']" 
+                                                v-for="(status,statusIndex) in statusList" 
+                                                :key="statusIndex"
+                                                @click="changeStatus(statusIndex)"
+                                                >{{status.text}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="box rate-70">
+                                            <div class="box-overhidden">
+                                                <div class="box-over-scroll">
+                                                    <div class="box-scroll">
+                                                        <div class="repair" v-for="(repair,repairIndex) in repairInfoList" :key="repairIndex">
+                                                            <div class="repair-man">
+                                                                <img class="assets-img" src="./images/repair_1.png" alt="">
+                                                                <div class="man-name">{{repair.name}}</div>
+                                                            </div>
+                                                            <div class="detail-info">
+                                                                <div class="detail-item" v-for="(detail,detailIndex) in repair.detail" :key="detailIndex">
+                                                                    <span>{{detail.type}}：</span><span class="item-val">{{detail.value}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 左侧下 -->
+                            <div class="box-contain content-left-bottom">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月排单统计</div>
+                                        <div class="box">
+                                            <div class="rank-list">
+                                                <div class="rank-item" v-for="(rank,rankIndex) in rankList" :key="rankIndex">
+                                                    <img :src="'./images/'+rank.imgSrc" alt="" srcset="">
+                                                    <div class="rank-text">{{rank.text}}</div>
+                                                    <div class="rank-number">{{rank.number}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 中间 -->
+                        <div class="content-middle">
+                           <gong-dan></gong-dan>
+                        </div>
+                        <!-- 右侧 -->
+                        <div class="content-right">
+                            <div class="box-contain right-box right-box1">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月排单统计</div>
+                                        <div class="box">
+                                            <div class="right-box1-box">
+                                                <div class="box1-box-item blue">
+                                                    <div class="top-number">135</div>
+                                                    <div class="bottom-color">设备故障</div>
+                                                </div>
+                                                <div class="box1-box-item orange">
+                                                    <div class="top-number">135</div>
+                                                    <div class="bottom-color">硬件更换</div>
+                                                </div>
+                                                <div class="box1-box-item green">
+                                                    <div class="top-number">135</div>
+                                                    <div class="bottom-color">线路损坏</div>
+                                                </div>
+                                                <div class="box1-box-item red">
+                                                    <div class="top-number">135</div>
+                                                    <div class="bottom-color">其他</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-contain right-box right-box2">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月工单分布占比</div>
+                                        <div class="box-chart rate-70">
+                                            <rose-chart></rose-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-contain right-box right-box3">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月排单状态统计</div>
+                                        <div class="box-chart rate-70">
+                                            <line-chart></line-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-contain right-box right-box4">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">本月工单问题等级分布</div>
+                                        <div class="box-chart rate-70">
+                                            <bar-chart></bar-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <script src="js/index/mixin.js"></script>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            mixins: [mixins],
+            data() {
+                return {
+                    constants: {},
+                    
+                    statusList:[
+                        {
+                            text:'忙碌',
+                            active:true
+                        },
+                        {
+                            text:'空闲',
+                            active:false
+                        },
+                        {
+                            text:'休假',
+                            active:false
+                        },
+                    ],
+                    repairInfoList:[
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+                        {
+                            name:'陈XX',
+                            detail:[
+                                {
+                                    type:'状态',
+                                    value:'忙碌'
+                                },
+                                {
+                                    type:'专业',
+                                    value:'电工'
+                                },
+                                {
+                                    type:'好评',
+                                    value:'100%'
+                                },
+                            ]
+                        },
+
+                    ],
+                    // 排单统计
+                    rankList:[
+                        {
+                            text:'报修总数',
+                            imgSrc:'rank_1.png',
+                            number:10644
+                        },
+                        {
+                            text:'未处理',
+                            imgSrc:'rank_2.png',
+                            number:10644
+                        },
+                        {
+                            text:'进行中',
+                            imgSrc:'rank_3.png',
+                            number:10644
+                        },
+                        {
+                            text:'延缓处理',
+                            imgSrc:'rank_4.png',
+                            number:10644
+                        },
+                        {
+                            text:'已处理',
+                            imgSrc:'rank_5.png',
+                            number:10644
+                        },
+                    ],
+                };
+            },
+            created(){
+
+            },
+            mounted(){
+            },
+            methods: {
+                changeStatus(index){
+                    this.statusList.forEach((e,i)=>{
+                        index==i?e.active=true:e.active=false
+                    })
+                },
+                  // echarts字号自适应
+                fontSize(res) {
+                    var docEl = document.documentElement,
+                        clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                    if (!clientWidth) return;
+                    var fontSize = 100 * (clientWidth / 1920);
+                    return res * fontSize;
+                },
+            }
+        })
+    </script>
+
+</body>
+
+</html>

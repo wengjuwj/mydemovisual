@@ -1,0 +1,133 @@
+.gong-dan{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+/* 控制图标 */
+.gongdan-control{
+    position: absolute;
+    right: 2%;
+    top: 3%;
+    cursor: pointer;
+}
+.gongdan-control-box{
+    position: relative;
+}
+.gongdan-control-img{
+    width: 0.35rem;
+    height: 0.35rem;
+}
+/* 控制面板 */
+.gongdan-control-panel{
+    position: absolute;
+    right: 0.28rem;
+    top: 0.28rem;
+    border: 2px solid #2FECEE;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    padding: 0.15rem;
+}
+.gongdan-panel-box{
+    /* width: 85%;
+    height: 85%; */
+    margin: auto;
+}
+.gongdan-panel-item{
+    padding: 0.05rem 0.15rem;
+    border: 1px solid #0a8e91;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #0a8e91;
+    color: #000D1D;
+    min-width: 1.5rem;
+}
+.gongdan-panel-item.active{
+    border: 1px solid #52AAF8;
+    color: #00C1C3;
+    background: #183158;
+}
+.gongdan-panel-item:not(:last-child){
+    margin-bottom: 0.1rem;
+}
+.gongdan-panel-icon{
+    width: 0.16rem;
+    height: auto;
+    margin-right: 0.05rem;
+}
+/* 故障列表 */
+.trouble-list{
+
+}
+.trouble-item{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+
+}
+.trouble-item-img{
+    width: 0.35rem;
+}
+.trouble-item-box{
+    position: relative;
+}
+.trouble-simplify{
+    display: flex;
+    justify-content: center;
+    padding: 0.08rem 0.10rem 0.20rem 0.10rem;
+    background: url(../images/buble.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 1.2rem;
+    position: absolute;
+    bottom: 0.52rem;
+    left: -0.52rem;
+}
+.trouble-detail{
+    display: flex;
+    justify-content: center;
+    
+    min-width: 1.8rem;
+    /* height: 100px; */
+    position: absolute;
+    /* bottom: -1.2rem;
+    right: -1.5rem; */
+}
+.trouble-detail.level_1 .trouble-title{
+    background: #F34139;
+}
+.trouble-detail.level_1 .trouble-content{
+    background: #3E0B09;
+}
+.trouble-detail.level_2 .trouble-title{
+    background: #BFA000;
+}
+.trouble-detail.level_2 .trouble-content{
+    background: #7F6B06;
+}
+.trouble-detail.level_3 .trouble-title{
+    background: #549E0B;
+}
+.trouble-detail.level_3 .trouble-content{
+    background: #264B05;
+}
+.trouble-title{
+    padding: 0.10rem;
+    background: #00C1C3;
+}
+.trouble-content{
+    padding: 0.10rem;
+    background: #0a8e91;
+}
+.trouble-detail-item{
+    padding: 0.05rem 0;
+    display: flex;
+    align-items: center;
+}
+.import-img{
+    width: 0.22rem;
+}
+.trouble-detail-item-label{
+    margin: 0 0.08rem;
+}
