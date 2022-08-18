@@ -57,6 +57,9 @@
     height: auto;
     margin-right: 0.05rem;
 }
+.gongdan-panel-text{
+   
+}
 /* 故障列表 */
 .trouble-list{
 
@@ -69,6 +72,7 @@
 }
 .trouble-item-img{
     width: 0.35rem;
+    cursor: pointer;
 }
 .trouble-item-box{
     position: relative;
@@ -83,6 +87,8 @@
     position: absolute;
     bottom: 0.52rem;
     left: -0.52rem;
+    z-index: 5;
+    text-align: center;
 }
 .trouble-detail{
     display: flex;
@@ -93,6 +99,7 @@
     position: absolute;
     /* bottom: -1.2rem;
     right: -1.5rem; */
+    z-index: 10;
 }
 .trouble-detail.level_1 .trouble-title{
     background: #F34139;

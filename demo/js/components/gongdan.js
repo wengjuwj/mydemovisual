@@ -6,26 +6,34 @@ var gongdan=`
         <div class="operate-area">
             <div class="gongdan-control">
                 <div class="gongdan-control-box">
-                    <img class="gongdan-control-img" src="./images/control.png" alt="" srcset="" @click="changePanel">
+                    <img class="gongdan-control-img" src="./images/control.png" alt="" srcset="" @click.stop="changePanel">
                     <div class="gongdan-control-panel" v-show="showPanel">
                         <div class="gongdan-panel-box">
                             <div class="gongdan-panel-item" :class="[gongdan.active?'active':'']" v-for="(gongdan,gongdanIndex) in gongdan_panel" :key="gongdanIndex" @click="changeControl(gongdanIndex)">
                                 <img class="gongdan-panel-icon"  :src="'./images/'+gongdan.imgSrc" alt="" srcset=""/>
-                                {{gongdan.text}}
+                                <div class="gongdan-panel-text">{{gongdan.text}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="trouble-list">
-                <div class="trouble-item" :style="trouble.position" v-for="(trouble,troubleIndex) in troubleShowList" :key="troubleIndex">
+                <div class="trouble-item" :style="trouble.position" v-for="(trouble,troubleIndex) in troubleShowList" :key="troubleIndex"  @mouseover.stop="showDetail(troubleIndex)" @mouseleave.stop="hideDetail(troubleIndex)">
                     <div class="trouble-item-box">
-                        <img v-if="activeIndex==0" class="trouble-item-img" src="./images/trouble_0.png" alt="" srcset="" @click="changePanel">
-                        <img v-if="activeIndex==1" class="trouble-item-img" src="./images/trouble_1.png" alt="" srcset="" @click="changePanel">
-                        <img v-if="activeIndex==2" class="trouble-item-img" src="./images/trouble_2.png" alt="" srcset="" @click="changePanel">
-                        <img v-if="activeIndex==3" class="trouble-item-img" src="./images/trouble_3.png" alt="" srcset="" @click="changePanel">  
-                        <div class="trouble-simplify" v-if="activeIndex==0">{{trouble.adress}}{{trouble.troubleText}}故障</div>
-                        <div class="trouble-detail" v-else :class="['level_'+activeIndex]" :style="setStyle(trouble)">
+                        <template  v-if="activeIndex==0">
+                            <img v-if="!trouble.showDetail" class="trouble-item-img" src="./images/trouble_0.png" alt="" srcset="" @click="showDetail(troubleIndex)">
+                            <img v-if="trouble.showDetail&&trouble.troubleLevel==0" class="trouble-item-img" src="./images/trouble_0.png" alt="" srcset="" @click="showDetail(troubleIndex)">
+                            <img v-if="trouble.showDetail&&trouble.troubleLevel==1" class="trouble-item-img" src="./images/trouble_1.png" alt="" srcset="" @click="showDetail(troubleIndex)">
+                            <img v-if="trouble.showDetail&&trouble.troubleLevel==2" class="trouble-item-img" src="./images/trouble_2.png" alt="" srcset="" @click="showDetail(troubleIndex)">
+                            <img v-if="trouble.showDetail&&trouble.troubleLevel==3" class="trouble-item-img" src="./images/trouble_3.png" alt="" srcset="" @click="showDetail(troubleIndex)">
+                            
+                        </template>
+                        
+                        <img v-if="activeIndex==1" class="trouble-item-img" src="./images/trouble_1.png" alt="" srcset="">
+                        <img v-if="activeIndex==2" class="trouble-item-img" src="./images/trouble_2.png" alt="" srcset="">
+                        <img v-if="activeIndex==3" class="trouble-item-img" src="./images/trouble_3.png" alt="" srcset="">  
+                        <div class="trouble-simplify">{{trouble.adress}}{{trouble.troubleText}}故障</div>
+                        <div class="trouble-detail" v-show="trouble.showDetail" :class="['level_'+trouble.troubleLevel]" :style="setStyle(trouble)">
                             <div class="trouble-detail-box">
                                 <div class="trouble-title">{{trouble.adress}}-{{trouble.troubleText}}问题</div>
                                 <div class="trouble-content">
@@ -48,7 +56,7 @@ var gongdan=`
                                     </div>
                                     <div class="trouble-detail-item">
                                         <div class="trouble-detail-item-label">类型:</div>
-                                        <div class="trouble-detail-item-text">{{trouble.troubleType}}<</div>
+                                        <div class="trouble-detail-item-text">{{trouble.troubleType}}</div>
                                     </div>
                                     <div class="trouble-detail-item">
                                         <div class="trouble-detail-item-label">上报人:</div>
@@ -75,7 +83,7 @@ Vue.component('gong-dan',{
     template:gongdan,
     data(){
         return {
-            showPanel:false,
+            showPanel:true,
             activeIndex:0,
             gongdan_panel:[
                 {
@@ -109,12 +117,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:0,
                     troubleLevelText:"正常",
+                    // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"门诊楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                     
                 },
                 {
@@ -126,12 +139,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:0,
                     troubleLevelText:"正常",
+                     // 监控类别
+                     panelType:0,
+                     panelTypeText:"正常",
                     addressArea:"住院楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"住院二楼",
@@ -142,12 +160,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:1,
                     troubleLevelText:"一级",
+                     // 监控类别
+                     panelType:0,
+                     panelTypeText:"正常",
                     addressArea:"住院楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"医技一楼",
@@ -158,12 +181,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:0,
                     troubleLevelText:"正常",
+                     // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"医技楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"综合一楼",
@@ -174,12 +202,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:2,
                     troubleLevelText:"二级",
+                    // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"综合楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"门诊二楼",
@@ -190,12 +223,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:0,
                     troubleLevelText:"正常",
+                    // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"门诊楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"门诊三楼",
@@ -206,12 +244,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:0,
                     troubleLevelText:"正常",
+                     // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"门诊楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
                 {
                     adress:"医技二楼",
@@ -222,12 +265,17 @@ Vue.component('gong-dan',{
                     },
                     troubleLevel:3,
                     troubleLevelText:"三级",
+                    // 监控类别
+                    panelType:0,
+                    panelTypeText:"正常",
                     addressArea:"门诊楼",
                     status:"未处理",
                     troubleType:"设备故障",
                     reportMan:"王XX",
                     repairMan:"张XX",
-                    reportTime:"2022/08/08"
+                    reportTime:"2022/08/08",
+                    showDetail:false,
+                    inlineStatus:0
                 },
             ],
             troubleShowList:[]
@@ -238,9 +286,19 @@ Vue.component('gong-dan',{
             deep:true,
             handler(){
                 if(this.activeIndex==0){
-                    this.troubleShowList=this.troubleList;
+                    this.troubleShowList=this.troubleList.filter((item)=>{
+                            item.showDetail=false;
+                            return item
+                    })
                 }else{
-                    this.troubleShowList=this.troubleList.filter((item)=>{return item.troubleLevel==this.activeIndex})
+                    this.troubleShowList=this.troubleList.filter((item)=>{
+                        if(item.troubleLevel==this.activeIndex&&this.activeIndex!=0){
+                            item.showDetail=true
+                            return item
+                        }else{
+                            item.showDetail=false
+                        }
+                    })
                 }
                
             }
@@ -262,6 +320,23 @@ Vue.component('gong-dan',{
             this.gongdan_panel.forEach((e,i)=>{
                 index==i?e.active=true:e.active=false
             })
+        },
+        // 点击/悬浮故障点时显示详细内容
+        showDetail(index){
+            console.log(index,'mouseEnter')
+            this.troubleShowList[index].showDetail=true;
+            // this.troubleShowList.forEach((item,i)=>{
+            //     if(index==i){
+            //         item.showDetail=!this.troubleShowList[index].showDetail
+            //     }else{
+            //         item.showDetail=false
+            //     }
+            // })
+          
+        },
+        // 鼠标移出故障点时隐藏详细内容
+        hideDetail(index){
+            this.troubleShowList[index].showDetail=false;
         },
         // 设置style
         setStyle(item){

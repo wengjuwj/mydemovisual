@@ -21,14 +21,14 @@ var headerBar=`
             </div>
         </div>
         <div class="header-menus">
-            <div class="time-menu">
-                <div>18:08:08</div>
-                <div>2022.08.14</div>
+            <div class="time-menu" v-if="date">
+                <div>{{date.getHours()}}:{{date.getMinutes()}}:{{date.getSeconds()}}</div>
+                <div>{{date.getFullYear()}}.{{date.getMonth()+1}}.{{date.getDate()}}</div>
             </div>
             <div class="line"></div>
             <div class="weather-menu">
                 <img src="./images/weather.png" alt="" srcset="">
-                <div>
+                <div class="weather-info">
                     <div>PM 2.5</div>
                     <div>27 ℃</div>
                 </div>
@@ -84,10 +84,12 @@ Vue.component('header-bar',{
                     pageUrl:'index-zk'
                 },
             ],
+            // 获取当前日期
+            date:new Date()
         }
     },
     created(){
-        this.navTabs[Number(this.activeIndex)].active=true
+        this.navTabs[Number(this.activeIndex)].active=true;
     },
     mounted(){
         

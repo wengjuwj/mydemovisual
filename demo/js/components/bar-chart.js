@@ -42,7 +42,7 @@ Vue.component('bar-chart',{
                         label: {
                             show: true
                         },
-                        barWidth: 40,
+                        barWidth: fontSize(0.4),
                         emphasis: {
                             focus: 'series'
                         },
@@ -60,6 +60,7 @@ Vue.component('bar-chart',{
                 },
                 color: ['#FF2525', '#E6CE30', '#55C331', '#3458F5', '#899EF7',],
                 legend: {
+                    type:"scroll",
                     textStyle: {
                         fontSize: fontSize(0.12),
                         color: '#d5f2fd'

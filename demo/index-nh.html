@@ -32,16 +32,24 @@
     <script src="js/components/list-status-two.js"></script>
     <!-- 监控点等级统计 -->
     <script src="js/components/list-status-three.js"></script>
+    <!--  -->
+    <script src="js/components/list-status-four.js"></script>
+    <!-- 本月设备检修统计 -->
+    <script src="js/components/list-status-five.js"></script>
+    <!-- 空调设备统计 -->
+    <script src="js/components/list-status-six.js"></script>
+    <!-- 空调预警提醒 -->
+    <script src="js/components/list-status-seven.js"></script>
     <!-- 中间图片部分 -->
-    <script src="js/components/gongdan.js"></script>
+    <script src="js/components/nenghao.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     <!-- 中间部分的样式 -->
-    <link rel="stylesheet" href="./css/gong-dan.css">
+    <link rel="stylesheet" href="./css/neng-hao.css">
 </head>
 
 <body>
     <div id="app">
-        <div class="page index-nh">
+        <div class="page index-zk">
             <div class="wrap">
                 <header-bar :active-index="3"></header-bar>
                 <!-- 内容部分 -->
@@ -50,63 +58,46 @@
                         <!-- 左侧 -->
                         <div class="content-left">
                             <!-- 左侧上 -->
-                            <div class="box-contain content-left-top">
+                            <div class="box-contain left-box left-box1">
                                 <div class="line-lt"></div>
                                 <div class="line-lb"></div>
                                 <div class="line-rt"></div>
                                 <div class="line-rb"></div>
                                 <div class="contain-box">
                                     <div class="actual-box">
-                                        <div class="sub-title">维修人员信息</div>
-                                        <div class="sub-status">
-                                            <div class="status-right">
-                                                <div class="status-item" 
-                                                :class="[status.active?'active':'']" 
-                                                v-for="(status,statusIndex) in statusList" 
-                                                :key="statusIndex"
-                                                @click="changeStatus(statusIndex)"
-                                                >{{status.text}}</div>
-                                            </div>
-                                        </div>
+                                        <div class="sub-title">当日实时用量统计</div>
                                         <div class="box rate-70">
-                                            <div class="box-overhidden">
-                                                <div class="box-over-scroll">
-                                                    <div class="box-scroll">
-                                                        <div class="repair" v-for="(repair,repairIndex) in repairInfoList" :key="repairIndex">
-                                                            <div class="repair-man">
-                                                                <img class="assets-img" src="./images/repair_1.png" alt="">
-                                                                <div class="man-name">{{repair.name}}</div>
-                                                            </div>
-                                                            <div class="detail-info">
-                                                                <div class="detail-item" v-for="(detail,detailIndex) in repair.detail" :key="detailIndex">
-                                                                    <span>{{detail.type}}：</span><span class="item-val">{{detail.value}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <img src="./images/nh_top.png" style="width: 100%;height: 104%;" alt="" srcset="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 左侧中 -->
+                            <div class="box-contain left-box left-box2">
+                                <div class="line-lt"></div>
+                                <div class="line-lb"></div>
+                                <div class="line-rt"></div>
+                                <div class="line-rb"></div>
+                                <div class="contain-box">
+                                    <div class="actual-box">
+                                        <div class="sub-title">24h水电用量趋势</div>
+                                        <div class="box-chart">
+                                            <line-chart :chart-data="lineChartData"></line-chart>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- 左侧下 -->
-                            <div class="box-contain content-left-bottom">
+                            <div class="box-contain left-box left-box3">
                                 <div class="line-lt"></div>
                                 <div class="line-lb"></div>
                                 <div class="line-rt"></div>
                                 <div class="line-rb"></div>
                                 <div class="contain-box">
                                     <div class="actual-box">
-                                        <div class="sub-title">本月排单统计</div>
-                                        <div class="box">
-                                            <div class="rank-list">
-                                                <div class="rank-item" v-for="(rank,rankIndex) in rankList" :key="rankIndex">
-                                                    <img :src="'./images/'+rank.imgSrc" alt="" srcset="">
-                                                    <div class="rank-text">{{rank.text}}</div>
-                                                    <div class="rank-number">{{rank.number}}</div>
-                                                </div>
-                                            </div>
+                                        <div class="sub-title">24h气暖用量趋势</div>
+                                        <div class="box-chart">
+                                            <line-chart :chart-data="lineChartData2"></line-chart>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +105,7 @@
                         </div>
                         <!-- 中间 -->
                         <div class="content-middle">
-                           <gong-dan></gong-dan>
+                           <neng-hao></neng-hao>
                         </div>
                         <!-- 右侧 -->
                         <div class="content-right">
@@ -125,24 +116,13 @@
                                 <div class="line-rb"></div>
                                 <div class="contain-box">
                                     <div class="actual-box">
-                                        <div class="sub-title">本月排单统计</div>
-                                        <div class="box">
-                                            <div class="right-box1-box">
-                                                <div class="box1-box-item blue">
-                                                    <div class="top-number">135</div>
-                                                    <div class="bottom-color">设备故障</div>
-                                                </div>
-                                                <div class="box1-box-item orange">
-                                                    <div class="top-number">135</div>
-                                                    <div class="bottom-color">硬件更换</div>
-                                                </div>
-                                                <div class="box1-box-item green">
-                                                    <div class="top-number">135</div>
-                                                    <div class="bottom-color">线路损坏</div>
-                                                </div>
-                                                <div class="box1-box-item red">
-                                                    <div class="top-number">135</div>
-                                                    <div class="bottom-color">其他</div>
+                                        <div class="sub-title">事件报警信息总览</div>
+                                        <div class="box-chart">
+                                            <div class="box-overhidden">
+                                                <div class="box-over-scroll">
+                                                    <div class="box-scroll">
+                                                        <list-status-seven :nenghao="true"></list-status-seven>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,9 +136,9 @@
                                 <div class="line-rb"></div>
                                 <div class="contain-box">
                                     <div class="actual-box">
-                                        <div class="sub-title">本月工单分布占比</div>
-                                        <div class="box-chart rate-70">
-                                            <rose-chart></rose-chart>
+                                        <div class="sub-title">院区用能占比统计</div>
+                                        <div class="box-chart">
+                                            <rose-horizontal-chart></rose-horizontal-chart>
                                         </div>
                                     </div>
                                 </div>
@@ -170,23 +150,9 @@
                                 <div class="line-rb"></div>
                                 <div class="contain-box">
                                     <div class="actual-box">
-                                        <div class="sub-title">本月排单状态统计</div>
-                                        <div class="box-chart rate-70">
-                                            <line-chart></line-chart>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-contain right-box right-box4">
-                                <div class="line-lt"></div>
-                                <div class="line-lb"></div>
-                                <div class="line-rt"></div>
-                                <div class="line-rb"></div>
-                                <div class="contain-box">
-                                    <div class="actual-box">
-                                        <div class="sub-title">本月工单问题等级分布</div>
-                                        <div class="box-chart rate-70">
-                                            <bar-chart></bar-chart>
+                                        <div class="sub-title">区域用能统计</div>
+                                        <div class="box-chart">
+                                            <img src="./images/nh_6.png" style="width: 100%;height: 100%;" alt="" srcset="">
                                         </div>
                                     </div>
                                 </div>
@@ -205,171 +171,109 @@
             data() {
                 return {
                     constants: {},
-                    
-                    statusList:[
+                    // 区域监控统计
+                    barChartData:{
+                        xAxisData:['门诊楼','综合楼','住院楼','医技楼','检验科'],
+                        yAxisData:[
+                            {
+                                name:"一类",
+                                data:[30,10,40,20,50]
+                            },
+                            {
+                                name:"二类",
+                                data:[10,40,20,30,20]
+                            },
+                            {
+                                name:"三类",
+                                data:[50,15,20,20,30]
+                            },
+                            {
+                                name:"四类",
+                                data:[50,15,20,20,30]
+                            },
+                        ]
+                    },
+                    // 监控点
+                    jkLevel:[
                         {
-                            text:'忙碌',
-                            active:true
+                            level:'I',
+                            levelText:'一类',
+                            number:30,
                         },
                         {
-                            text:'空闲',
-                            active:false
+                            level:'II',
+                            levelText:'二类',
+                            number:60,
                         },
                         {
-                            text:'休假',
-                            active:false
-                        },
-                    ],
-                    repairInfoList:[
-                        {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
+                            level:'III',
+                            levelText:'三类',
+                            number:100,
                         },
                         {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
+                            level:'IV',
+                            levelText:'四类',
+                            number:150,
                         },
                         {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
-                        },
-                        {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
-                        },
-                        {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
-                        },
-                        {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
-                        },
-                        {
-                            name:'陈XX',
-                            detail:[
-                                {
-                                    type:'状态',
-                                    value:'忙碌'
-                                },
-                                {
-                                    type:'专业',
-                                    value:'电工'
-                                },
-                                {
-                                    type:'好评',
-                                    value:'100%'
-                                },
-                            ]
-                        },
-
-                    ],
-                    // 排单统计
-                    rankList:[
-                        {
-                            text:'报修总数',
-                            imgSrc:'rank_1.png',
-                            number:10644
-                        },
-                        {
-                            text:'未处理',
-                            imgSrc:'rank_2.png',
-                            number:10644
-                        },
-                        {
-                            text:'进行中',
-                            imgSrc:'rank_3.png',
-                            number:10644
-                        },
-                        {
-                            text:'延缓处理',
-                            imgSrc:'rank_4.png',
-                            number:10644
-                        },
-                        {
-                            text:'已处理',
-                            imgSrc:'rank_5.png',
-                            number:10644
+                            level:'总',
+                            levelText:'全部',
+                            number:340,
                         },
                     ],
+                    // 监控等级占比
+                    pieChartData:{
+                        "data": [
+                            {
+                                "name": "一类",
+                                "num": "31.2587",
+                                "proportion": "77.21"
+                            },
+                            {
+                                "name": "二类",
+                                "num": "27.6939",
+                                "proportion": "8.09"
+                            },
+                            {
+                                "name": "三类",
+                                "num": "33.5782",
+                                "proportion": "4.41"
+                            },
+                            {
+                                "name": "四类",
+                                "num": "30.1816",
+                                "proportion": "3.68"
+                            },
+                        ]
+                    },
+                    // 本月监控趋势统计
+                    lineChartData:{
+                        xAxisData:['15时','17时','19时','21时'],
+                        yAxisData:[
+                            {
+                                name:"用电量",
+                                data:[300,100,400,200]
+                            },
+                            {
+                                name:"用水量",
+                                data:[100,400,200,300]
+                            },
+                        ]
+                    },
+                     // 24h气暖用量趋势
+                     lineChartData2:{
+                        xAxisData:['16时','18时','20时','22时'],
+                        yAxisData:[
+                            {
+                                name:"用气量",
+                                data:[300,100,400,200]
+                            },
+                            {
+                                name:"供暖",
+                                data:[100,400,200,300]
+                            },
+                        ]
+                    },
                 };
             },
             created(){

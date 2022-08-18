@@ -91,7 +91,7 @@ Vue.component('bar-reverse-chart',{
                         formatter:function(params){
                             var newParamsName="";
                             var paramsNameNumber=params.length;
-                            var providerNumber=4;//一行显示几个字
+                            var providerNumber=3;//一行显示几个字
                             var rowNumber=Math.ceil(paramsNameNumber/providerNumber);
                             if(paramsNameNumber>providerNumber){
                                 for(var p=0;p<rowNumber;p++){
@@ -123,7 +123,7 @@ Vue.component('bar-reverse-chart',{
                   {
                     name: '',
                     type: 'bar',
-                    barWidth: '20',
+                    barWidth: fontSize(0.2),
                     data: seriesData,
                     
                   }

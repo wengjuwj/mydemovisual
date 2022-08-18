@@ -10,37 +10,46 @@
     <script src="js/vue.js"></script>
     <script src="js/common/fontSize.js"></script>
     <script src="js/echarts.min.js"></script>
-    <!-- 导航部分 -->
-    <script src="js/components/header-bar.js"></script>
-    <!-- 玫瑰图 -图例垂直排列 -->
-    <script src="js/components/rose-chart.js"></script>
-    <!-- 玫瑰图 -图例水平排列 -->
-    <script src="js/components/rose-horizontal-chart.js"></script>
-    <!-- 双环形图 -->
-    <script src="js/components/pie-chart.js"></script>
-    <!-- 折线图 -->
-    <script src="js/components/line-chart.js"></script>
-    <!-- 堆叠柱形图 -->
-    <script src="js/components/bar-chart.js"></script>
-    <!-- 柱形图-渐变 -->
-    <script src="js/components/bar-reverse-chart.js"></script>
-    <!-- 雷达图 -->
-    <script src="js/components/radar-chart.js"></script>
-    <!-- 本月排单统计组件 -->
-    <script src="js/components/list-status-one.js"></script>
-    <!-- 监控设备状态统计 -->
-    <script src="js/components/list-status-two.js"></script>
-    <!-- 监控点等级统计 -->
-    <script src="js/components/list-status-three.js"></script>
-    <!--  -->
-    <script src="js/components/list-status-four.js"></script>
-    <!-- 本月设备检修统计 -->
-    <script src="js/components/list-status-five.js"></script>
+     <!-- 导航部分 -->
+     <script src="js/components/header-bar.js"></script>
+     <!-- 玫瑰图 -图例垂直排列 -->
+     <script src="js/components/rose-chart.js"></script>
+     <!-- 玫瑰图 -图例水平排列 -->
+     <script src="js/components/rose-horizontal-chart.js"></script>
+     <!-- 双环形图 -->
+     <script src="js/components/pie-chart.js"></script>
+     <!-- 折线图 -->
+     <script src="js/components/line-chart.js"></script>
+     <!-- 堆叠柱形图 -->
+     <script src="js/components/bar-chart.js"></script>
+     <!-- 柱形图-渐变 -->
+     <script src="js/components/bar-reverse-chart.js"></script>
+     <!-- 雷达图 -->
+     <script src="js/components/radar-chart.js"></script>
+     <!-- 本月排单统计组件 -->
+     <script src="js/components/list-status-one.js"></script>
+     <!-- 监控设备状态统计 -->
+     <script src="js/components/list-status-two.js"></script>
+     <!-- 监控点等级统计 -->
+     <script src="js/components/list-status-three.js"></script>
+     <!--  -->
+     <script src="js/components/list-status-four.js"></script>
+     <!-- 本月设备检修统计 -->
+     <script src="js/components/list-status-five.js"></script>
+     <!-- 空调设备统计 -->
+     <script src="js/components/list-status-six.js"></script>
+     <!-- 空调预警提醒 -->
+     <script src="js/components/list-status-seven.js"></script>
+     <!-- 弹框内容1 -->
+     <script src="js/components/eq-tankuang1.js"></script>
+     <!-- 弹框内容1.css -->
+     <link rel="stylesheet" href="./css/tankuang1.css">
+     <!-- 弹框内容2 -->
     <!-- 中间图片部分 -->
-    <script src="js/components/gongdan.js"></script>
+    <script src="js/components/shebei.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     <!-- 中间部分的样式 -->
-    <link rel="stylesheet" href="./css/gong-dan.css">
+    <link rel="stylesheet" href="./css/she-bei.css">
 </head>
 
 <body>
@@ -101,7 +110,7 @@
                         </div>
                         <!-- 中间 -->
                         <div class="content-middle">
-                           <gong-dan></gong-dan>
+                           <she-bei @modalshow="defineModal"></she-bei>
                         </div>
                         <!-- 右侧 -->
                         <div class="content-right">
@@ -152,6 +161,8 @@
                 </div>
             </div>
           </div>
+          <!-- 弹框部分 -->
+          <tan-kuang v-if="shouModal" @modalshow="defineModal"></tan-kuang>
     </div>
     <script src="js/index/mixin.js"></script>
     <script>
@@ -238,7 +249,7 @@
                     },
                     // 本月监控趋势统计
                     lineChartData:{
-                        xAxisData:['一','二','三','四'],
+                        xAxisData:['第一周','第二周','第三周','第四周'],
                         yAxisData:[
                             {
                                 name:"正常",
@@ -249,7 +260,9 @@
                                 data:[100,400,200,300]
                             },
                         ]
-                    }
+                    },
+                    // 弹框是否显示
+                    shouModal:false
                 };
             },
             created(){
@@ -271,6 +284,11 @@
                     var fontSize = 100 * (clientWidth / 1920);
                     return res * fontSize;
                 },
+                // 测试ann
+                defineModal(){
+                    this.shouModal=!this.shouModal
+                    
+                }
             }
         })
     </script>

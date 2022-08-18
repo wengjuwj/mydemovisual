@@ -36,11 +36,19 @@
     <script src="js/components/list-status-four.js"></script>
     <!-- 本月设备检修统计 -->
     <script src="js/components/list-status-five.js"></script>
+    <!-- 空调设备统计 -->
+    <script src="js/components/list-status-six.js"></script>
+    <!-- 空调预警提醒 -->
+    <script src="js/components/list-status-seven.js"></script>
+    <!-- 弹框内容1 -->
+    <script src="js/components/eq-tankuang2.js"></script>
+    <!-- 弹框内容1.css -->
+    <link rel="stylesheet" href="./css/tankuang2.css">
     <!-- 中间图片部分 -->
-    <script src="js/components/gongdan.js"></script>
+    <script src="js/components/kongtiao.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     <!-- 中间部分的样式 -->
-    <link rel="stylesheet" href="./css/gong-dan.css">
+    <link rel="stylesheet" href="./css/kong-tiao.css">
 </head>
 
 <body>
@@ -63,7 +71,7 @@
                                     <div class="actual-box">
                                         <div class="sub-title">空调设备统计</div>
                                         <div class="box rate-70">
-                                            <list-status-four></list-status-four>
+                                            <list-status-six></list-status-six>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +86,13 @@
                                     <div class="actual-box">
                                         <div class="sub-title">空调预警提醒</div>
                                         <div class="box-chart">
-                                            <line-chart :chart-data="lineChartData"></line-chart>
+                                            <div class="box-overhidden">
+                                                <div class="box-over-scroll">
+                                                    <div class="box-scroll">
+                                                        <list-status-seven></list-status-seven>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +115,7 @@
                         </div>
                         <!-- 中间 -->
                         <div class="content-middle">
-                           <gong-dan></gong-dan>
+                           <kong-tiao @modalshow="defineModal"></kong-tiao>
                         </div>
                         <!-- 右侧 -->
                         <div class="content-right">
@@ -152,6 +166,8 @@
                 </div>
             </div>
           </div>
+          <!-- 弹框部分 -->
+          <tan-kuang-zk v-if="shouModal" @modalshow="defineModal"></tan-kuang-zk>
     </div>
     <script src="js/index/mixin.js"></script>
     <script>
@@ -238,7 +254,7 @@
                     },
                     // 本月监控趋势统计
                     lineChartData:{
-                        xAxisData:['一','二','三','四'],
+                        xAxisData:['第一周','第二周','第三周','第四周'],
                         yAxisData:[
                             {
                                 name:"正常",
@@ -249,7 +265,9 @@
                                 data:[100,400,200,300]
                             },
                         ]
-                    }
+                    },
+                    // 弹框是否显示
+                    shouModal:false
                 };
             },
             created(){
@@ -271,6 +289,11 @@
                     var fontSize = 100 * (clientWidth / 1920);
                     return res * fontSize;
                 },
+                // 测试ann
+                defineModal(){
+                    this.shouModal=!this.shouModal
+                    
+                }
             }
         })
     </script>

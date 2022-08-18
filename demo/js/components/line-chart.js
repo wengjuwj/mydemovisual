@@ -41,27 +41,16 @@ Vue.component('line-chart',{
     methods:{
         setLineChart(){
             let _this=this;
-            let colors=['#1293FD','#E6CE30','#E6307B','#07D870','#44D5FF'];
+            let colors=['#44D5FF','#E6307B','#FF9000','#07D870','#1293FD'];
             let areaStyle=[
                 {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: 'rgba(18, 147, 253, 1)'
+                        color: 'rgba(68, 213, 255, 1)'
                     },
                     {
                         offset: 1,
-                        color: 'rgba(18, 147, 253, 0)'
-                    }
-                    ], false),
-                },
-                {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: 'rgba(230, 206, 48, 1)'
-                    },
-                    {
-                        offset: 1,
-                        color: 'rgba(230, 206, 48, 0)'
+                        color: 'rgba(68, 213, 255, 0)'
                     }
                     ], false),
                 },
@@ -79,6 +68,17 @@ Vue.component('line-chart',{
                 {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
+                        color: 'rgba(255, 144, 0, 1)'
+                    },
+                    {
+                        offset: 1,
+                        color: 'rgba(255, 144, 0, 0)'
+                    }
+                    ], false),
+                },
+                {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
                         color: 'rgba(7, 216, 112, 1)'
                     },
                     {
@@ -87,17 +87,18 @@ Vue.component('line-chart',{
                     }
                     ], false),
                 },
+                
                 {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: 'rgba(68, 213, 255, 1)'
+                        color: 'rgba(18, 147, 253, 1)'
                     },
                     {
                         offset: 1,
-                        color: 'rgba(68, 213, 255, 0)'
+                        color: 'rgba(18, 147, 253, 0)'
                     }
                     ], false),
-                }
+                },
             ];
             // 动态设置lengendData
             let testData=this.chartData;
@@ -168,7 +169,7 @@ Vue.component('line-chart',{
                         rotate: 10,
                         fontSize: fontSize(0.12),
                         formatter:function(value){
-                            return '第'+value +'周'
+                            return value
                         }
                     },
                     axisTick: {
